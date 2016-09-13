@@ -1,0 +1,26 @@
+Vim configuration for Jack Mudge <jakykong@theanythingbox.com>
+
+This may or may not be useful to anyone else, but please feel free to review it, adapt it, steal from it, or use it outright.
+
+Be aware that this config is used frequently on a Windows machine, so the filename is _vimrc, not .vimrc. I use a symlink on Linux machines for keeping this in sync.
+
+The bundles folder has git repositories almost exclusively; if it doesn't work when cloning, please use the following list:
+
+Align: https://github.com/vim-scripts/Align.git
+csv.vim: https://github.com/chrisbra/csv.vim.git
+ctrlp.vim: https://github.com/ctrlpvim/ctrlp.vim.git
+nerdtree: https://github.com/scrooloose/nerdtree.git
+rainbow: https://github.com/luochen1990/rainbow.git
+SearchComplete: https://jakykong@github.com/jakykong/SearchComplete.git
+SQLUtilities: https://github.com/vim-scripts/SQLUtilities
+vim-asterisk: https://github.com/haya14busa/vim-asterisk
+vim-commentary: http://github.com/tpope/vim-commentary.git
+vim-diff-enhanced: https://github.com/chrisbra/vim-diff-enhanced
+vim-fugitive: https://github.com/tpope/vim-fugitive
+vim-indentwise: https://github.com/jeetsukumaran/vim-indentwise.git
+vim-perl: https://github.com/vim-perl/vim-perl.git
+vim-ps1: https://github.com/PProvost/vim-ps1.git
+vim-unimpaired: https://github.com/tpope/vim-unimpaired.git
+vim-vinegar: https://github.com/tpope/vim-vinegar.git
+zim: https://github.com/jakykong/vim-zim.git
+
