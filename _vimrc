@@ -59,7 +59,6 @@ let g:rainbow_active = 1
 " Font - Open Source DejaVu Sans Mono font
 set guifont=DejaVu_Sans_Mono:h12:cANSI
 
-
 "Don't start on the welcome screen
 set shortmess+=I
 
@@ -217,6 +216,10 @@ set cindent
 set cinkeys-=0#
 set indentkeys-=0#
 
+" Don't unindent when closing parentheses in any filetype
+set cinoptions=")0"
+
+
 "Prevent automatic insertion of linebreaks
 set textwidth=0
 set wrapmargin=0
@@ -236,8 +239,8 @@ set nowrapscan
 "Also load indent files, to auto lang-dependent indenting
 filetype plugin indent on
 
-"Set a very long history
-set history=1000
+"Set a very long history (max)
+set history=10000
 
 "Stop writing those annoying ~ files.
 set nobackup
@@ -424,6 +427,7 @@ nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 " CTRL-U in insert mode is problematic. Use CTRL-G u to first break undo
 " so that you can undo CTRL-U after inserting line break.
 inoremap <C-U> <C-G>u<C-U>
+inoremap <C-W> <C-G>u<C-W>
 
 " CTRL-P to insert the current yank in a line below this one
 map :normal o<ESC>P
