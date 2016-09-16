@@ -30,7 +30,7 @@ let mapleader = ' '
 "### SETTINGS ###"
 
 "Database Configs (for DbExt) - Must be before Pathogen
-    source ./_dbext_settings.vim
+    source $VIM/_dbext_settings.vim
 
     " Use <Space>d instead of <Space>s for database stuff
     let g:dbext_map_prefix='<Leader>d'
