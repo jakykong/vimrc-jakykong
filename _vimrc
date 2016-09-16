@@ -30,15 +30,7 @@ let mapleader = ' '
 "### SETTINGS ###"
 
 "Database Configs (for DbExt) - Must be before Pathogen
-    let g:dbext_default_profile_DataTEST = 'type=SQLSRV:integratedlogin=1:dsnname=bcdb02:srvname=bcdb02:dbname=datatest'
-    let g:dbext_default_profile_DataTRAI = 'type=SQLSRV:integratedlogin=1:dsnname=bcdb02:srvname=bcdb02:dbname=datatrai'
-    let g:dbext_default_profile_DataAWS8 = 'type=SQLSRV:integratedlogin=1:dsnname=bcdb02:srvname=bcdb02:dbname=dataaws8'
-    let g:dbext_default_profile_DataLIVE = 'type=SQLSRV:integratedlogin=1:dsnname=bcdb01:srvname=bcdb01:dbname=datalive'
-
-    " Automatically configure bcdb02 as the default profile for buffers
-    " Enforces it for all files -- use of other profiles is fine but should never
-    " be live by default!
-    autocmd BufNewFile,BufRead,BufNew * DBSetOption profile=DataTEST
+    source "_dbext_settings.vim"
 
     " Use <Space>d instead of <Space>s for database stuff
     let g:dbext_map_prefix='<Leader>d'
@@ -264,36 +256,37 @@ let g:sql_type_default = 'sqlanywhere'
 
 
 "Version from http://superuser.com/questions/697847/cant-run-vimdiff-7-4-on-windows-7
-if has("win32")
- function! MyDiff()
-   let opt = '-a --binary '
-   if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-   if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-   let arg1 = v:fname_in
-   if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-   let arg2 = v:fname_new
-   if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-   let arg3 = v:fname_out
-   if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-   if $VIMRUNTIME =~ ' '
-     if &sh =~ '\<cmd'
-       if empty(&shellxquote)
-         let l:shxq_sav = ''
-         set shellxquote&
-       endif
-       let cmd = '"' . $VIMRUNTIME . '\diff"'
-     else
-       let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-     endif
-   else
-     let cmd = $VIMRUNTIME . '\diff'
-   endif
-   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
-   if exists('l:shxq_sav')
-     let &shellxquote=l:shxq_sav
-   endif
- endfunction
-endif
+"Was relevant for earlier versions of Vim official distribution
+" if has("win32")
+"  function! MyDiff()
+"    let opt = '-a --binary '
+"    if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+"    if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+"    let arg1 = v:fname_in
+"    if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+"    let arg2 = v:fname_new
+"    if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+"    let arg3 = v:fname_out
+"    if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+"    if $VIMRUNTIME =~ ' '
+"      if &sh =~ '\<cmd'
+"        if empty(&shellxquote)
+"          let l:shxq_sav = ''
+"          set shellxquote&
+"        endif
+"        let cmd = '"' . $VIMRUNTIME . '\diff"'
+"      else
+"        let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+"      endif
+"    else
+"      let cmd = $VIMRUNTIME . '\diff'
+"    endif
+"    silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
+"    if exists('l:shxq_sav')
+"      let &shellxquote=l:shxq_sav
+"    endif
+"  endfunction
+" endif
 
 
 " Function to create a comment box around lines of text
@@ -340,22 +333,18 @@ function! CreateCommentBox(chr,lns,lne,ul,ur,ll,lr) range
     execute "normal " . (a:firstline + len(l:outln) - 1) . "G"
 endfunction
 " Specific configurations of the above
-    " Powershell
-    function! CreatePSBox() 
-        call CreateCommentBox('#','##','##','##','##','##','##') 
-    endfunction
-    " SQL - Dashes
-    function! CreateSQLBox() 
-        call CreateCommentBox('-','--','--','--','--','--','--') 
-    endfunction
-    " SQL - Fancy
-    function! CreateSQLFancyBox()  
-        call CreateCommentBox('=','||','||','/*','*\','\*','*/') 
-    endfunction
-    " VIM scripts
-    function! CreateVimBox()
-        call CreateCommentBox('"','""','""','""','""','""','""')
-    endfunction
+function! CreatePSBox() " Powershell
+    call CreateCommentBox('#','##','##','##','##','##','##') 
+endfunction
+function! CreateSQLBox() " SQL - Dashes
+    call CreateCommentBox('-','--','--','--','--','--','--') 
+endfunction
+function! CreateSQLFancyBox()  " SQL - Fancy
+    call CreateCommentBox('=','||','||','/*','*\','\*','*/') 
+endfunction
+function! CreateVimBox() " VIM scripts
+    call CreateCommentBox('"','""','""','""','""','""','""')
+endfunction
 
 
 " Insert cn spaces at the beginning of the line, cursor is left on last line
@@ -364,7 +353,7 @@ function! AddSpaces(cn) range
     let sv_srch=&hlsearch
     let sv_sl=getreg(@/)
     let sv_slst=getregtype(@/)
-    execute "silent ".a:firstline.",".a:lastline."s/^/".repeat(" ",a:cn)."/ge"
+    execute "silent ".a:firstline.",".a:lastline."s/^/\\=repeat(\" \"," . a:cn . ")/ge"
     " Restore search state
     let &hlsearch=sv_srch
     call setreg("/",sv_sl,sv_slst)
@@ -376,11 +365,55 @@ function! DelSpaces(cn) range
     let sv_srch=&hlsearch
     let sv_sl=getreg(@/)
     let sv_slst=getregtype(@/)
-    execute "silent ".a:firstline.",".a:lastline."s#^".repeat(" ",a:cn)."##ge"
+    execute "silent ".a:firstline.",".a:lastline."s/^ \{".a:cn."\}//ge"
     " Restore search state
     let &hlsearch=sv_srch
     call setreg("/",sv_sl,sv_slst)
 endfunction
+
+
+
+
+""""""""""""
+" AutoCMDs "
+""""""""""""
+"Auto save and load views. 
+"Among other things, this saves the folds I create in a file for the next time
+"I load it.
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview 
+
+"Leave insert mode on alt-tab etc.
+"This prevents accidentally starting to type once I'm back in VIM.
+"It's a much more consistent behavior that doesn't rely on my memory.
+autocmd FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>")
+
+"Prevent swap files from flowing all over the place
+autocmd BufReadPost *.* set noswapfile
+
+"Maximize window on startup (only for Windows)
+if has("win32")
+    au GUIEnter * simalt ~x
+endif
+
+"Enable omni-completion for powershell and other syntaxes
+autocmd Filetype *
+    \ if &omnifunc == "" |
+    \   setlocal omnifunc=syntaxcomplete#Complete |
+    \ endif
+
+"This prevents misbehaved plugins from screwing with text wrapping
+autocmd FileType text setlocal textwidth=0
+
+"Restore cursor position when editing a file
+"Don't do it for invalid positions or inside event handler
+"also don't re-do default position when opening new file (e.g., first line)
+autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+
+
 
 
 """"""""""""""""
@@ -465,6 +498,20 @@ vmap <Leader>ss :call AddSpaces(v:count1)<CR>
 " Delete <count> spaces at the beginning of line(s)
 nmap <Leader>S :<C-U>call DelSpaces(v:count1)<CR>
 vmap <Leader>S :call DelSpaces(v:count1)<CR>
+
+" Toggle undo tree
+nnoremap U :UndotreeToggle<CR>
+
+"Used for Vim-Asterisk plugin
+" https://github.com/haya14busa/vim-asterisk
+map ]   <Plug>(asterisk-*)
+map [   <Plug>(asterisk-#)
+map g]  <Plug>(asterisk-g*)
+map g[  <Plug>(asterisk-g#)
+map z]  <Plug>(asterisk-z*)
+map z[  <Plug>(asterisk-z#)
+map gz[ <Plug>(asterisk-gz#) 
+map gz] <Plug>(asterisk-gz*)
       
 
 
@@ -497,57 +544,6 @@ if has("user_commands")
 
 endif
 
-
-""""""""""""
-" AutoCMDs "
-""""""""""""
-"Auto save and load views. 
-"Among other things, this saves the folds I create in a file for the next time
-"I load it.
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview 
-
-"Leave insert mode on alt-tab etc.
-"This prevents accidentally starting to type once I'm back in VIM.
-"It's a much more consistent behavior that doesn't rely on my memory.
-autocmd FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>")
-
-"Prevent swap files from flowing all over the place
-autocmd BufReadPost *.* set noswapfile
-
-"Maximize window on startup (only for WINDOWS)
-if has("win32")
-    au GUIEnter * simalt ~x
-endif
-
-"Enable omni-completion for powershell (actually for any syntax)
-autocmd Filetype *
-    \ if &omnifunc == "" |
-    \   setlocal omnifunc=syntaxcomplete#Complete |
-    \ endif
-
-"This prevents misbehaved plugins from screwing with text wrapping
-autocmd FileType text setlocal textwidth=0
-
-"Restore cursor position when editing a file
-"Don't do it for invalid positions or inside event handler
-"also don't re-do default position when opening new file (e.g., first line)
-autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
-
-
-"Used for Vim-Asterisk plugin
-" https://github.com/haya14busa/vim-asterisk
-map ]   <Plug>(asterisk-*)
-map [   <Plug>(asterisk-#)
-map g]  <Plug>(asterisk-g*)
-map g[  <Plug>(asterisk-g#)
-map z]  <Plug>(asterisk-z*)
-map z[  <Plug>(asterisk-z#)
-map gz[ <Plug>(asterisk-gz#) 
-map gz] <Plug>(asterisk-gz*)
 
 
 
