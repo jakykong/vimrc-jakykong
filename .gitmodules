@@ -1,0 +1,48 @@
+[submodule "vimfiles/bundle/csv.vim"]
+	path = vimfiles/bundle/csv.vim
+	url = https://github.com/chrisbra/csv.vim.git
+[submodule "vimfiles/bundle/ctrlp.vim"]
+	path = vimfiles/bundle/ctrlp.vim
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
+[submodule "vimfiles/bundle/dbext.vim"]
+	path = vimfiles/bundle/dbext.vim
+	url = https://github.com/vim-scripts/dbext.vim
+[submodule "vimfiles/bundle/nerdtree"]
+	path = vimfiles/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vimfiles/bundle/rainbow"]
+	path = vimfiles/bundle/rainbow
+	url = https://github.com/luochen1990/rainbow.git
+[submodule "vimfiles/bundle/SearchComplete"]
+	path = vimfiles/bundle/SearchComplete
+	url = https://jakykong@github.com/jakykong/SearchComplete.git
+[submodule "vimfiles/bundle/SQLUtilities"]
+	path = vimfiles/bundle/SQLUtilities
+	url = https://github.com/vim-scripts/SQLUtilities
+[submodule "vimfiles/bundle/vim-asterisk"]
+	path = vimfiles/bundle/vim-asterisk
+	url = https://github.com/haya14busa/vim-asterisk
+[submodule "vimfiles/bundle/vim-commentary"]
+	path = vimfiles/bundle/vim-commentary
+	url = http://github.com/tpope/vim-commentary.git
+[submodule "vimfiles/bundle/vim-diff-enhanced"]
+	path = vimfiles/bundle/vim-diff-enhanced
+	url = https://github.com/chrisbra/vim-diff-enhanced
+[submodule "vimfiles/bundle/vim-fugitive"]
+	path = vimfiles/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "vimfiles/bundle/vim-indentwise"]
+	path = vimfiles/bundle/vim-indentwise
+	url = https://github.com/jeetsukumaran/vim-indentwise.git
+[submodule "vimfiles/bundle/vim-perl"]
+	path = vimfiles/bundle/vim-perl
+	url = https://github.com/vim-perl/vim-perl.git
+[submodule "vimfiles/bundle/vim-ps1"]
+	path = vimfiles/bundle/vim-ps1
+	url = https://github.com/PProvost/vim-ps1.git
+[submodule "vimfiles/bundle/vim-unimpaired"]
+	path = vimfiles/bundle/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "vimfiles/bundle/vim-zim"]
+	path = vimfiles/bundle/vim-zim
+	url = https://github.com/jakykong/vim-zim.git
