@@ -22,6 +22,8 @@ vim-indentwise: https://github.com/jeetsukumaran/vim-indentwise.git
 vim-perl: https://github.com/vim-perl/vim-perl.git
 vim-ps1: https://github.com/PProvost/vim-ps1.git
 vim-unimpaired: https://github.com/tpope/vim-unimpaired.git
-vim-vinegar: https://github.com/tpope/vim-vinegar.git
 zim: https://github.com/jakykong/vim-zim.git
+
+Used to use:
+https://github.com/vim-scripts/dbext.vim
 
