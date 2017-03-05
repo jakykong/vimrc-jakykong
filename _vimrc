@@ -35,8 +35,12 @@ let mapleader = ' '
     " Use <Space>d instead of <Space>s for database stuff
     let g:dbext_map_prefix='<Leader>d'
 
-" Rainbow parentheses
-let g:rainbow_active = 1
+    " Rainbow parentheses
+    let g:rainbow_active = 1
+
+    " Configure slimv
+    let g:paredit_leader = ','
+    let g:slimv_leader = ','
 
 
 "### LOAD PLUGINS ###"
