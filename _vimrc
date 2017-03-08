@@ -35,19 +35,26 @@ let mapleader = ' '
     " Use <Space>d instead of <Space>s for database stuff
     let g:dbext_map_prefix='<Leader>d'
 
-    " Rainbow parentheses
-    let g:rainbow_active = 1
+    " Slimv configuration
+    " Do not load file plugin in Windows (e.g., work machine)
+    if has('win32')
+        let g:slimv_loaded = 1
+    endif
+    let g:slimv_impl = 'sbcl' " preferred lisp - sbcl for now
 
     " Configure slimv
     let g:paredit_leader = ','
     let g:slimv_leader = ','
+
+" Rainbow parentheses
+let g:rainbow_active = 1
 
 
 "### LOAD PLUGINS ###"
     "Pathogen package manager for Vim https://github.com/tpope/vim-pathogen
     execute pathogen#infect()
 
-    packadd! matchit
+    " Vim builtins
 
 """"""""""""""""""""""""""""""""""
 " Visual/Aesthetic Configuration "
@@ -440,6 +447,10 @@ autocmd BufReadPost *
 """"""""""""""""
 " Key bindings "
 """"""""""""""""
+"Creates a box around comments in PowerShell or Perl (or any other #-comment
+"language)
+map <C-F1> :call CreatePSBox()<CR>
+map <C-F2> :call CreateSQLBox()<CR>
 
 "Toggle word wrapping
 map <F2> :set wrap!<CR>
@@ -469,11 +480,6 @@ nnoremap <F12> :call ToggleFontSize()<CR>
 "Resynchronize syntax
 nnoremap <C-d> :syntax sync fromstart<CR>
 
-"Creates a box around comments in PowerShell or Perl (or any other #-comment
-"language)
-map <C-F1> :call CreatePSBox()<CR>
-map <C-F2> :call CreateSQLBox()<CR>
-
 "Clear highlight with ctrl-l
 nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 
@@ -487,7 +493,7 @@ inoremap <C-U> <C-G>u<C-U>
 inoremap <C-W> <C-G>u<C-W>
 
 " CTRL-P to insert the current yank in a line below this one
-map :normal o<ESC>P
+nmap <C-p> :normal o<ESC>P
 
 " CTRL-Z will zap (delete) all occurrences of selected text in the buffer.
 " beware of regex magic though.
@@ -544,6 +550,10 @@ nnoremap ]s ]s
 " Toggle virtual edit
 nnoremap <Leader>v :if &ve==""\|set ve=all\|echo "VirtualEdit ON"\|else\|set ve=\|echo "VirtualEdit OFF"\|endif<CR>
 nnoremap c. cl
+
+" Replace tabs with spaces on any lines that I edit
+" nnoremap i :let save_search_reg=@/<CR>:s/<TAB>/    /g<CR>:let @/=save_search_reg<CR>i
+" (needs work)
       
 
 
