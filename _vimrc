@@ -1,6 +1,6 @@
 "Installed Packages:
 " Rainbow Parentheses: https://code.google.com/p/vim-scripts/wiki/RainbowParenthsisBundle 
-" PowerShell syntax: http://www.vim.org/scripts/script.php?script_id=1327
+" PowerShell Syntax: http://www.vim.org/scripts/script.php?script_id=1327
 " NOT ANY MORE - Fugitive Git Wrapper: http://www.vim.org/scripts/script.php?script_id=2975
 " NOT ANY MORE - Yankring: http://www.vim.org/scripts/script.php?script_id=1234
 " Vim Commentary: https://github.com/tpope/vim-commentary (to comment stuff out)
@@ -47,6 +47,7 @@ let mapleader = ' '
     "Pathogen package manager for Vim https://github.com/tpope/vim-pathogen
     execute pathogen#infect()
 
+    packadd! matchit
 
 """"""""""""""""""""""""""""""""""
 " Visual/Aesthetic Configuration "
@@ -376,6 +377,22 @@ function! DelSpaces(cn) range
 endfunction
 
 
+" Toggle font size between 10 and 12 point
+function! ToggleFontSize()
+    if !exists('g:jm_default_font')
+        let g:jm_default_font = 0
+    endif
+    
+    if g:jm_default_font == 1
+        set guifont=DejaVu_Sans_Mono:h12:cANSI
+        let g:jm_default_font = 0
+    else
+        set guifont=DejaVu_Sans_Mono:h10:cANSI
+        let g:jm_default_font = 1
+    endif
+endfunction
+
+
 
 
 """"""""""""
@@ -445,6 +462,9 @@ nnoremap <F5> :set spell!<CR>
 "Quickly reload a file with visible ^M's (e.g., mixed line endings) in DOS
 "mode. An autocmd may be better (?) but this works well enough for now.
 nnoremap <F6> :e ++ff=dos<CR>
+
+"Toggle font size between 10 and 12pt (for different monitor resolutions, or to have more screen real estate)
+nnoremap <F12> :call ToggleFontSize()<CR>
 
 "Resynchronize syntax
 nnoremap <C-d> :syntax sync fromstart<CR>
@@ -516,6 +536,14 @@ map z]  <Plug>(asterisk-z*)
 map z[  <Plug>(asterisk-z#)
 map gz[ <Plug>(asterisk-gz#) 
 map gz] <Plug>(asterisk-gz*)
+
+" Restore a couple of commands wiped out by the above
+nnoremap [s [s
+nnoremap ]s ]s
+
+" Toggle virtual edit
+nnoremap <Leader>v :if &ve==""\|set ve=all\|echo "VirtualEdit ON"\|else\|set ve=\|echo "VirtualEdit OFF"\|endif<CR>
+nnoremap c. cl
       
 
 
