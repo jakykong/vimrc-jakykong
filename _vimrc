@@ -55,6 +55,7 @@ let g:rainbow_active = 1
     execute pathogen#infect()
 
     " Vim builtins
+    packadd! matchit
 
 """"""""""""""""""""""""""""""""""
 " Visual/Aesthetic Configuration "

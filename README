@@ -24,3 +24,6 @@ vim-ps1: https://github.com/PProvost/vim-ps1.git
 vim-unimpaired: https://github.com/tpope/vim-unimpaired.git
 zim: https://github.com/jakykong/vim-zim.git
 
+Used to use:
+https://github.com/vim-scripts/dbext.vim
+
