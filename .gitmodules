@@ -46,3 +46,6 @@
 [submodule "vimfiles/bundle/vim-zim"]
 	path = vimfiles/bundle/vim-zim
 	url = https://github.com/jakykong/vim-zim.git
+[submodule "vimfiles/bundle/slimv"]
+	path = vimfiles/bundle/slimv
+	url = https://github.com/jakykong/slimv.git
