@@ -9,6 +9,7 @@ The bundles folder has git repositories almost exclusively; if it doesn't work w
 Align: https://github.com/vim-scripts/Align.git
 csv.vim: https://github.com/chrisbra/csv.vim.git
 ctrlp.vim: https://github.com/ctrlpvim/ctrlp.vim.git
+dbext.vim: https://github.com/vim-scripts/dbext.vim
 nerdtree: https://github.com/scrooloose/nerdtree.git
 rainbow: https://github.com/luochen1990/rainbow.git
 SearchComplete: https://jakykong@github.com/jakykong/SearchComplete.git
@@ -21,6 +22,6 @@ vim-indentwise: https://github.com/jeetsukumaran/vim-indentwise.git
 vim-perl: https://github.com/vim-perl/vim-perl.git
 vim-ps1: https://github.com/PProvost/vim-ps1.git
 vim-unimpaired: https://github.com/tpope/vim-unimpaired.git
-vim-vinegar: https://github.com/tpope/vim-vinegar.git
 zim: https://github.com/jakykong/vim-zim.git
+
 
