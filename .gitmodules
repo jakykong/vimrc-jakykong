@@ -49,3 +49,9 @@
 [submodule "vimfiles/bundle/slimv"]
 	path = vimfiles/bundle/slimv
 	url = https://github.com/jakykong/slimv.git
+[submodule "vimfiles/bundle/Align"]
+    path = vimfiles/bundle/Align
+    url = https://github.com/vim-scripts/Align 
+[submodule "vimfiles/bundle/vim-vinega"]
+    path = vimfiles/bundle/vim-vinega
+    url = https://github.com/tpope/vim-vinegar
