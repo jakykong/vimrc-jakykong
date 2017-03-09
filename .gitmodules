@@ -48,7 +48,7 @@
 	url = https://github.com/jakykong/vim-zim.git
 [submodule "vimfiles/bundle/slimv"]
 	path = vimfiles/bundle/slimv
-	url = https://github.com/jakykong/slimv.git
+	url = https://github.com/kovisoft/slimv.git
 [submodule "vimfiles/bundle/Align"]
     path = vimfiles/bundle/Align
     url = https://github.com/vim-scripts/Align 
