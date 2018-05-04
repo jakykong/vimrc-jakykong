@@ -7,6 +7,7 @@
 " NerdTree: https://github.com/scrooloose/nerdtree (to browse filesystem)
 " NOT ANY MORE - Vimproc: https://github.com/Shougo/vimproc.vim (for interactive console apps inside vim)
 " Vim Asterisk: https://github.com/haya14busa/vim-asterisk (Advanced search behavior)
+" Slimv: <url here> (Lisp/SLIME interface for Vim)
 
 "My own scripts which should be provided:
 "	after/syntax/ps1.vim -- Adds SQL syntax highlighting to Powershell @" strings.
@@ -94,7 +95,7 @@ set hlsearch
 nohl
 
 "Status line configuration
-:set statusline=%<%f\ %h%m%r\ %{&fileencoding?&fileencoding:&encoding}%=\ %{VimBuddy()}\ \ %-14.(%l,%c%V%)\ %P
+:set statusline=%<%f\ %h%m%r\ %n\ %{&fileencoding?&fileencoding:&encoding}%=\ %{VimBuddy()}\ \ %-14.(%l,%c%V%)\ %P
 
 "Display line numbers
 set number
@@ -220,6 +221,10 @@ set nosmartindent
 set cindent
 set cinkeys-=0#
 set indentkeys-=0#
+
+" Don't unindent when I type END on case statements in SQL (blargh. Default, really?)
+set indentkeys-==END
+
 
 " Don't unindent when closing parentheses in any filetype
 set cinoptions=")0"
