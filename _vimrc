@@ -7,6 +7,7 @@
 " NerdTree: https://github.com/scrooloose/nerdtree (to browse filesystem)
 " NOT ANY MORE - Vimproc: https://github.com/Shougo/vimproc.vim (for interactive console apps inside vim)
 " Vim Asterisk: https://github.com/haya14busa/vim-asterisk (Advanced search behavior)
+" Slimv: <url here> (Lisp/SLIME interface for Vim)
 
 "My own scripts which should be provided:
 "	after/syntax/ps1.vim -- Adds SQL syntax highlighting to Powershell @" strings.
@@ -20,14 +21,37 @@ set nocompatible
 set encoding=utf-8
 
 " Make sure I have a convenient leader key
-" This needs to occur before any mappings which depend on <Leader>
+" This needs to occur before any mappings which depend on <Leader>, including
+" plugins.
 let mapleader = ' '
+
+""""""""""""""""""""""""""
+"" Prerequisite Settings
+""""""""""""""""""""""""""
+" These must be executed before some or all modules are loaded
+
+" Python Mode config
+
+" Force Python 3.5 (required for python-mode)
+set pythonthreedll=python35.dll
+let g:pymode_options_max_line_length = 100
+let g:pymode_lint_options_pep8 = {'ignore': 'E225,E231,E401,E402,E123,E265,E303,E203,E128,E226,E201,E124,E266,E221,E126,E251,E501,E122,E116,E131,E121,W391', 'max_line_length': 100}
 
 """"""""""""""""""""""
 "" External Modules
 """"""""""""""""""""""
 
 "### SETTINGS ###"
+
+"Configure python-mode for Python3 support
+let g:pymode_python = 'python3'
+"Paths automatically added to sys.paths; should make GP testing easier to have
+"this there.
+let g:pymode_paths = ['C:\_Git\SupplyChain-repo\App-SC\20-Src']
+"Pymode indent is experimental, but it seems to work for now.
+"enabled until I see any reason to do otherwise.
+"let g:pymode_indent = 1 " this <dis>ables.
+
 
 "Database Configs (for DbExt) - Must be before Pathogen
 "    source $VIM/_dbext_settings.vim
@@ -78,6 +102,7 @@ set ruler
 
 "Always indicate matching brackets for cursor
 set showmatch
+set matchtime=1
 
 "Always show incomplete commands (e.g., show <C-w> when starting a window cmd)
 set showcmd
@@ -94,7 +119,7 @@ set hlsearch
 nohl
 
 "Status line configuration
-:set statusline=%<%f\ %h%m%r\ %{&fileencoding?&fileencoding:&encoding}%=\ %{VimBuddy()}\ \ %-14.(%l,%c%V%)\ %P
+:set statusline=%<%f\ %h%m%r\ %n\ %{&fileencoding?&fileencoding:&encoding}%=\ %{VimBuddy()}\ \ %-14.(%l,%c%V%)\ %P
 
 "Display line numbers
 set number
@@ -221,6 +246,10 @@ set cindent
 set cinkeys-=0#
 set indentkeys-=0#
 
+" Don't unindent when I type END on case statements in SQL (blargh. Default, really?)
+set indentkeys-==END
+
+
 " Don't unindent when closing parentheses in any filetype
 set cinoptions=")0"
 
@@ -234,6 +263,9 @@ set formatoptions-=tc
 
 " Searching should not wrap around automatically
 set nowrapscan
+
+" Color scheme for terminal windows which is easier to read
+highlight Terminal ctermbg=darkgrey ctermfg=blue guibg=darkgrey guifg=blue
 
 """""""""""""""""""""""""""""""""
 " Back-End/Memory Configuration "
@@ -584,6 +616,12 @@ if has("user_commands")
 
     "Format XML
     command! FormatXML % !C:\Users\jmudge\Desktop\Tools\Exe\xmllint.exe "%" --format
+
+    "Open various useful terminals 
+    "Requires Vim 8.1+, which introduces the terminal command.
+    command PS <mods> terminal ++close powershell
+    command PSNoProfile <mods> terminal ++close powershell -NoProfile
+    command PY <mods> terminal ++close python
 
 endif
 
