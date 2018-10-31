@@ -55,4 +55,6 @@
 [submodule "vimfiles/bundle/python-mode"]
 	path = vimfiles/bundle/python-mode
 	url = https://github.com/python-mode/python-mode.git
-
+[submodule "vimfiles/bundle/Align"]
+	path = vimfiles/bundle/Align
+	url = https://github.com/vim-scripts/Align.git
