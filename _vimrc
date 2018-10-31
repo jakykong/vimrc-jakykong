@@ -36,6 +36,8 @@ let mapleader = ' '
 set pythonthreedll=python35.dll
 let g:pymode_options_max_line_length = 100
 let g:pymode_lint_options_pep8 = {'ignore': 'E225,E231,E401,E402,E123,E265,E303,E203,E128,E226,E201,E124,E266,E221,E126,E251,E501,E122,E116,E131,E121,W391', 'max_line_length': 100}
+" Turn off whitespace highlighting - annoying when editing Ryan's code
+let g:pymode_syntax_space_errors = 0
 
 """"""""""""""""""""""
 "" External Modules
@@ -77,6 +79,7 @@ let g:rainbow_active = 1
 "### LOAD PLUGINS ###"
     "Pathogen package manager for Vim https://github.com/tpope/vim-pathogen
     execute pathogen#infect()
+    :Helptags
 
     " Vim builtins
     packadd! matchit
