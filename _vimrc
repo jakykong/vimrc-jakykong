@@ -37,9 +37,9 @@ let mapleader = ' '
 
     " Slimv configuration
     " Do not load file plugin in Windows (e.g., work machine)
-    if has('win32')
-        let g:slimv_loaded = 1
-    endif
+    " if has('win32')
+    "     let g:slimv_loaded = 1
+    " endif
     let g:slimv_impl = 'sbcl' " preferred lisp - sbcl for now
 
     " Configure slimv
