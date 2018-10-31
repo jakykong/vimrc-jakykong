@@ -48,13 +48,11 @@
 	url = https://github.com/jakykong/vim-zim.git
 [submodule "vimfiles/bundle/slimv"]
 	path = vimfiles/bundle/slimv
-	url = https://github.com/jakykong/slimv.git
-[submodule "vimfiles/bundle/Align"]
-    path = vimfiles/bundle/Align
-    url = https://github.com/vim-scripts/Align 
-[submodule "vimfiles/bundle/vim-vinega"]
-    path = vimfiles/bundle/vim-vinega
+	url = https://github.com/kovisoft/slimv.git
+[submodule "vimfiles/bundle/vim-vinegar"]
+    path = vimfiles/bundle/vim-vinegar
     url = https://github.com/tpope/vim-vinegar
 [submodule "vimfiles/bundle/python-mode"]
 	path = vimfiles/bundle/python-mode
 	url = https://github.com/python-mode/python-mode.git
+
