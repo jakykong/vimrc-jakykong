@@ -19,9 +19,11 @@
 [submodule "vimfiles/bundle/SQLUtilities"]
 	path = vimfiles/bundle/SQLUtilities
 	url = https://github.com/vim-scripts/SQLUtilities
+    ignore = untracked
 [submodule "vimfiles/bundle/vim-asterisk"]
 	path = vimfiles/bundle/vim-asterisk
 	url = https://github.com/haya14busa/vim-asterisk
+    ignore = untracked
 [submodule "vimfiles/bundle/vim-commentary"]
 	path = vimfiles/bundle/vim-commentary
 	url = http://github.com/tpope/vim-commentary.git
@@ -59,3 +61,4 @@
 [submodule "vimfiles/bundle/Align"]
 	path = vimfiles/bundle/Align
 	url = https://github.com/vim-scripts/Align.git
+    ignore = untracked
