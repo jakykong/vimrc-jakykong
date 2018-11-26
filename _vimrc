@@ -32,12 +32,16 @@ let mapleader = ' '
 
 " Python Mode config
 
-" Force Python 3.5 (required for python-mode)
-set pythonthreedll=python35.dll
-let g:pymode_options_max_line_length = 100
+" Force Python 3.5 (required for python-mode as of Oct-18)
+set pythonthreedll=python36.dll
+let g:pymode_python = 'python3'
+let g:pymode_options_max_line_length = 100 "Set length of line for error warnings
 let g:pymode_lint_options_pep8 = {'ignore': 'E225,E231,E401,E402,E123,E265,E303,E203,E128,E226,E201,E124,E266,E221,E126,E251,E501,E122,E116,E131,E121,W391', 'max_line_length': 100}
-" Turn off whitespace highlighting - annoying when editing Ryan's code
-let g:pymode_syntax_space_errors = 0
+let g:pymode_syntax_space_errors = 0 "Turn off whitespace highlighting - annoying when editing Ryan's code
+let g:pymode_trim_whitespaces = 0 " Turn off auto-trim whitespace
+let g:pymode_rope = 0                "Disable Rope refactoring - creates extraneous dotfiles 
+let g:pymode_folding = 0             "Disable Python code folding.
+" let g:pymode_options_colorcolumn = 0
 
 """"""""""""""""""""""
 "" External Modules
