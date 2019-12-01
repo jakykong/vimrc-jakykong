@@ -35,7 +35,7 @@
 	path = vimfiles/bundle/vim-indentwise
 	url = https://github.com/jeetsukumaran/vim-indentwise.git
 [submodule "vimfiles/bundle/vim-perl"]
-	path = vimfiles/bundle/vim-perl
+	path = vimfiles/bundle-disabled/vim-perl
 	url = https://github.com/vim-perl/vim-perl.git
 [submodule "vimfiles/bundle/vim-ps1"]
 	path = vimfiles/bundle/vim-ps1
