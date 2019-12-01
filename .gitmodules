@@ -62,3 +62,6 @@
 	path = vimfiles/bundle/Align
 	url = https://github.com/vim-scripts/Align.git
     ignore = untracked
+[submodule "vimfiles/bundle/tern_for_vim"]
+	path = vimfiles/bundle/tern_for_vim
+	url = https://github.com/ternjs/tern_for_vim.git
