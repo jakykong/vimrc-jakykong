@@ -14,7 +14,7 @@
 	path = vimfiles/bundle/rainbow
 	url = https://github.com/luochen1990/rainbow.git
 [submodule "vimfiles/bundle/SearchComplete"]
-	path = vimfiles/bundle/SearchComplete
+	path = vimfiles/bundle-disabled/SearchComplete
 	url = https://jakykong@github.com/jakykong/SearchComplete.git
 [submodule "vimfiles/bundle/SQLUtilities"]
 	path = vimfiles/bundle/SQLUtilities
@@ -53,7 +53,7 @@
     path = vimfiles/bundle/vim-vinegar
     url = https://github.com/tpope/vim-vinegar
 [submodule "vimfiles/bundle/python-mode"]
-	path = vimfiles/bundle/python-mode
+	path = vimfiles/bundle-disabled/python-mode
 	url = https://github.com/python-mode/python-mode.git
 [submodule "vimfiles/bundle/Align"]
 	path = vimfiles/bundle/Align
